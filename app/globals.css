@@ -3,7 +3,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Complete redesign with terminal/hacker aesthetic like SurfManager */
 :root {
   --background: oklch(0.07 0.01 240);
   --foreground: oklch(0.9 0 0);
@@ -78,7 +77,7 @@
 @theme inline {
   --font-sans: "Geist", "Geist Fallback";
   --font-mono: "Geist Mono", "Geist Mono Fallback";
-  --font-pixel: var(--font-pixel), "Courier New", monospace;
+  --font-retro: var(--font-retro), "Comic Sans MS", "Marker Felt", sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -127,61 +126,179 @@
   }
 }
 
-/* Terminal/Hacker style utilities */
+/* Comic/Neo-Brutalist style utilities */
 @layer components {
-  .terminal-card {
-    @apply bg-card/80 border border-border rounded-lg backdrop-blur-sm;
+  
+  .comic-card, .terminal-card, .terminal-glow, .glow-border, .stat-card, .feature-card {
+    @apply bg-card border-2 border-border/80 rounded-xl;
+    box-shadow: 4px 4px 0px rgba(255, 255, 255, 0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
   }
 
-  .terminal-glow {
-    box-shadow: 0 0 20px rgba(34, 197, 94, 0.15), 0 0 40px rgba(34, 197, 94, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  
+  .comic-card:hover, .terminal-card:hover, .terminal-glow:hover, .glow-border:hover, .stat-card:hover, .feature-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px rgba(255, 255, 255, 0.25);
+  }
+
+
+  
+  
+  
+
+  .comic-button {
+    @apply bg-primary text-primary-foreground font-retro tracking-widest uppercase border-2 border-primary/50 rounded-lg transition-all;
+    box-shadow: 3px 3px 0px rgba(200, 200, 200, 0.2);
+  }
+
+  .comic-button:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px rgba(200, 200, 200, 0.2);
   }
 
   .terminal-text {
-    @apply font-mono text-primary;
+    @apply font-retro text-primary;
   }
 
   .section-header {
-    @apply text-2xl md:text-3xl font-bold tracking-tight;
+    @apply text-4xl md:text-5xl font-retro tracking-widest text-foreground uppercase drop-shadow-[4px_4px_0px_rgba(34,197,94,0.3)] stroke-primary stroke-[3px] fill-foreground;
+    -webkit-text-stroke: 2px var(--primary);
   }
 
-  .glow-border {
-    @apply border border-primary/30 hover:border-primary/60 transition-colors;
-  }
-
+  
   .stat-card {
-    @apply bg-card/60 border border-border/50 rounded-lg p-4 text-center backdrop-blur-sm;
+    @apply p-4 text-center;
   }
 
+
+  
   .feature-card {
-    @apply bg-card/40 border border-border/50 rounded-lg p-6 hover:border-primary/40 transition-all duration-300 hover:bg-card/60;
+    @apply p-6;
   }
 
-  .terminal-prompt::before {
-    content: "$ ";
-    @apply text-primary;
-  }
 
   .code-block {
-    @apply bg-muted/50 rounded-md p-4 font-mono text-sm overflow-x-auto border border-border/30;
+    @apply bg-background/50 rounded-md p-4 font-mono text-sm overflow-x-auto border-2 border-primary/40 border-dashed;
   }
 }
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-background;
+  @apply bg-background border-l-2 border-primary/20;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-border rounded-full hover:bg-muted-foreground/50;
+  @apply bg-primary rounded-none border-2 border-background shadow-[inset_2px_2px_0_rgba(255,255,255,0.2)];
 }
 
 /* Selection styling */
 ::selection {
-  @apply bg-primary/30 text-foreground;
+  @apply bg-primary text-background font-bold tracking-widest;
+}
+
+@layer utilities {
+  .bg-paper {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+}
+
+@layer components {
+  .comic-speech-bubble {
+    @apply relative inline-block bg-card border-2 border-primary/50 rounded-xl px-5 py-3 mt-4 text-foreground font-retro tracking-widest z-10;
+    box-shadow: 4px 4px 0px rgba(255, 255, 255, 0.15);
+  }
+
+  .comic-speech-bubble::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 14px;
+    border-style: solid;
+    /* Primary color border equivalent */
+    border-color: transparent transparent oklch(0.75 0.13 160 / 0.5) transparent; 
+  }
+  
+  .comic-speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(3px); /* Offset to cover internal bottom line */
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent var(--card) transparent;
+  }
+}
+
+
+@layer utilities {
+  .bg-speed-lines {
+    background-image: repeating-conic-gradient(
+      from 0deg at 50% 50%,
+      var(--primary) 0deg 0.5deg,
+      transparent 0.5deg 3deg,
+      var(--primary) 3deg 3.5deg,
+      transparent 3.5deg 6deg,
+      var(--primary) 6deg 6.2deg,
+      transparent 6.2deg 10deg,
+      var(--primary) 10deg 10.5deg,
+      transparent 10.5deg 14deg,
+      var(--primary) 14deg 14.8deg,
+      transparent 14.8deg 19deg
+    );
+  }
+}
+
+@keyframes spin-very-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-manga {
+  animation: spin-very-slow 60s linear infinite;
+}
+
+@layer utilities {
+  .manga-speed-lines {
+    position: absolute;
+    inset: -50%;
+    background: repeating-conic-gradient(
+      from 0deg,
+      transparent 0deg 3deg,
+      rgba(255, 255, 255, 0.4) 3.5deg 4deg,
+      transparent 4.5deg 7deg,
+      rgba(255, 255, 255, 0.6) 7.5deg 8deg,
+      transparent 8.5deg 13deg,
+      rgba(255, 255, 255, 0.3) 13.5deg 14deg,
+      transparent 14deg 22deg,
+      rgba(255, 255, 255, 0.5) 22.5deg 23deg
+    );
+    mask-image: radial-gradient(circle, transparent 20%, black 70%);
+    -webkit-mask-image: radial-gradient(circle, transparent 20%, black 70%);
+    opacity: 0.8;
+    z-index: -1;
+    pointer-events: none;
+    animation: speedlines 0.2s linear infinite;
+  }
+}
+
+@keyframes speedlines {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(1deg) scale(1.02); }
+  100% { transform: rotate(0deg) scale(1); }
 }

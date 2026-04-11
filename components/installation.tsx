@@ -7,25 +7,24 @@ export default function Installation() {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-12">
-          <h2 className="section-header font-mono mb-2">
-            <span className="text-secondary">**</span>
+          <h2 className="section-header mb-2">
             <span className="text-foreground">INSTALLATION</span>
           </h2>
           <p className="text-muted-foreground font-mono text-sm">// Get started in minutes</p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="max-w-2xl mx-auto">
           {/* Recommended Method */}
           <div className="terminal-card p-6 border-primary/30">
             <div className="flex items-center gap-2 mb-4">
               <Star className="w-5 h-5 text-primary" />
-              <h3 className="font-mono font-bold text-primary">RECOMMENDED</h3>
+              <h3 className="font-retro tracking-wide text-xl text-primary">RECOMMENDED</h3>
             </div>
             <p className="text-muted-foreground text-sm mb-6">Download the latest release and run the installer.</p>
 
             <div className="space-y-3 mb-6">
               <div className="code-block">
-                <span className="text-muted-foreground"># 1. Download from GitHub Releases</span>
+                <span className="text-muted-foreground"># 1. Download from Releases</span>
               </div>
               <div className="code-block">
                 <span className="text-muted-foreground"># 2. Extract the archive (YES EXTRACT IT!)</span>
@@ -41,47 +40,13 @@ export default function Installation() {
             </div>
 
             <Link
-              href="https://github.com/kevinmartz/TyperVX/releases/latest"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2 rounded-md font-mono text-sm font-medium hover:bg-primary/90 transition-colors"
+              className="comic-button text-sm px-5 py-2 inline-flex items-center gap-2"
             >
               <Download className="w-4 h-4" />
               Download Now
-            </Link>
-          </div>
-
-          {/* Build from Source */}
-          <div className="terminal-card p-6">
-            <div className="flex items-center gap-2 mb-4">
-              <Terminal className="w-5 h-5 text-secondary" />
-              <h3 className="font-mono font-bold text-foreground">BUILD FROM SOURCE</h3>
-            </div>
-            <p className="text-muted-foreground text-sm mb-6">Advanced: Build directly from the repository.</p>
-
-            <div className="space-y-3 mb-6">
-              <div className="code-block">
-                <span className="text-primary">$</span> git clone https://github.com/kevinmartz/TyperVX.git
-              </div>
-              <div className="code-block">
-                <span className="text-primary">$</span> cd TyperVX
-              </div>
-              <div className="code-block">
-                <span className="text-primary">$</span> npm install
-              </div>
-              <div className="code-block">
-                <span className="text-primary">$</span> npm run build
-              </div>
-            </div>
-
-            <Link
-              href="https://github.com/kevinmartz/TyperVX"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-border hover:border-primary/50 px-5 py-2 rounded-md font-mono text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <ExternalLink className="w-4 h-4" />
-              View Repository
             </Link>
           </div>
         </div>

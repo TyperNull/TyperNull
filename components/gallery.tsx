@@ -1,7 +1,7 @@
 "use client"
 
 const IS_PROD = process.env.NODE_ENV === "production"
-const PATH_PREFIX = IS_PROD ? "/typervex-site" : ""
+const PATH_PREFIX = IS_PROD ? "/TyperNull-site" : ""
 
 const screenshots = [
   {
@@ -35,11 +35,10 @@ export default function Gallery() {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-12">
-          <h2 className="section-header font-mono mb-2">
-            <span className="text-secondary">**</span>
+          <h2 className="section-header mb-2">
             <span className="text-foreground">SHOWCASE</span>
           </h2>
-          <p className="text-muted-foreground font-mono text-sm">// See TyperVX in action</p>
+          <p className="text-muted-foreground font-mono text-sm">// See TyperNull in action</p>
         </div>
 
         {/* Featured Showcase */}

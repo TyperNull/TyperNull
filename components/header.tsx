@@ -23,24 +23,16 @@ export default function Header() {
       className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/95 backdrop-blur-md border-b border-border/50" : "bg-transparent"
         }`}
     >
-      {/* Terminal-style top bar */}
-      <div className="bg-card/80 border-b border-border/30 py-1 px-4 font-mono text-xs text-muted-foreground hidden md:block">
-        <span className="text-primary">root@typervx</span>
-        <span className="text-muted-foreground">:</span>
-        <span className="text-secondary">~</span>
-        <span className="text-muted-foreground">$</span>
-        <span className="ml-2">./typervx --info</span>
-      </div>
-
+      {/* Sticky nav */}
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-md bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-bold text-primary group-hover:bg-primary/20 transition-colors">
+            <div className="w-10 h-10 rounded-md bg-transparent border-2 border-primary/50 text-shadow-none shadow-[2px_2px_0_rgba(34,197,94,0.5)] flex items-center justify-center font-retro text-2xl text-primary group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:shadow-[0px_0px_0_rgba(34,197,94,0.5)] transition-all">
               T
             </div>
-            <span className="text-lg font-pixel tracking-tighter text-foreground group-hover:text-primary transition-colors">
-              TYPERVX
+            <span className="text-xl font-retro tracking-widest text-primary stroke-primary stroke-2 drop-shadow-[2px_2px_0px_rgba(34,197,94,0.4)] group-hover:text-foreground transition-colors">
+              TYPERNULL
             </span>
           </Link>
 
@@ -61,23 +53,21 @@ export default function Header() {
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-3">
             <Link
-              href="https://github.com/kevinmartz/TyperVX/releases/latest"
+              href="/feedback"
+              className="comic-button bg-card text-foreground border-primary/50 text-xs px-4 py-2 flex items-center gap-2 hover:bg-primary/20"
+            >
+              Bug / Feature Request
+            </Link>
+            <Link
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-md font-mono text-sm font-medium hover:bg-primary/90 transition-colors"
+              className="comic-button text-xs px-4 py-2 flex items-center gap-2"
             >
               <Download className="w-4 h-4" />
               Download
             </Link>
-            <Link
-              href="https://github.com/kevinmartz/TyperVX"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 border border-border hover:border-primary/50 px-4 py-2 rounded-md font-mono text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Github className="w-4 h-4" />
-              GitHub
-            </Link>
+            
           </div>
 
           {/* Mobile Menu Button */}
@@ -98,30 +88,30 @@ export default function Header() {
                 <li key={item}>
                   <Link
                     href={`/${item.toLowerCase()}`}
-                    className="block text-sm font-mono text-muted-foreground hover:text-primary transition-colors"
+                    className="block text-xl font-sans text-muted-foreground hover:text-primary transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    $ cd /{item.toLowerCase()}
+                    {item}
                   </Link>
                 </li>
               ))}
             </ul>
             <div className="flex gap-3 mt-4 pt-4 border-t border-border/30">
               <Link
-                href="https://github.com/kevinmartz/TyperVX/releases/latest"
+                href="/feedback"
+                className="comic-button bg-card text-foreground border-primary/50 flex-1 px-4 py-2 text-sm flex items-center justify-center gap-2"
+              >
+                Tracker
+              </Link>
+              <Link
+                href="#"
                 target="_blank"
-                className="flex-1 flex items-center justify-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-md font-mono text-sm"
+                className="comic-button flex-1 px-4 py-2 text-sm flex items-center justify-center gap-2"
               >
                 <Download className="w-4 h-4" />
                 Download
               </Link>
-              <Link
-                href="https://github.com/kevinmartz/TyperVX"
-                target="_blank"
-                className="flex items-center justify-center gap-2 border border-border px-4 py-2 rounded-md font-mono text-sm"
-              >
-                <Github className="w-4 h-4" />
-              </Link>
+              
             </div>
           </div>
         )}

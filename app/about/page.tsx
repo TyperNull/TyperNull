@@ -3,8 +3,8 @@ import Credits from "@/components/credits"
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'About - TyperVX',
-    description: 'Learn about the TyperVX project and its contributors.',
+    title: 'About - TyperNull',
+    description: 'Learn about the TyperNull project and its contributors.',
 }
 
 export default function AboutPage() {

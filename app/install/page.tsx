@@ -2,8 +2,8 @@ import Installation from "@/components/installation"
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'Installation - TyperVX',
-    description: 'Step-by-step guide to install TyperVX.',
+    title: 'Installation - TyperNull',
+    description: 'Step-by-step guide to install TyperNull.',
 }
 
 export default function InstallPage() {

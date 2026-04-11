@@ -2,8 +2,8 @@ import Features from "@/components/features"
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'Features - TyperVX',
-    description: 'Explore the powerful features of TyperVX.',
+    title: 'Features - TyperNull',
+    description: 'Explore the powerful features of TyperNull.',
 }
 
 export default function FeaturesPage() {

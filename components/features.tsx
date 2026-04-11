@@ -45,11 +45,10 @@ export default function Features() {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-12">
-          <h2 className="section-header font-mono mb-2">
-            <span className="text-secondary">**</span>
+          <h2 className="section-header mb-2">
             <span className="text-foreground">FEATURES</span>
           </h2>
-          <p className="text-muted-foreground font-mono text-sm">// What can TyperVX do?</p>
+          <p className="text-muted-foreground font-mono text-sm">// What can TyperNull do?</p>
         </div>
 
         {/* Features Grid */}
@@ -61,7 +60,7 @@ export default function Features() {
                   <feature.icon className="w-5 h-5" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-mono font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="font-retro tracking-wide text-xl text-foreground mb-2 group-hover:text-primary transition-colors">
                     {feature.title}
                   </h3>
                   <p className="text-sm text-muted-foreground mb-3 leading-relaxed">{feature.description}</p>

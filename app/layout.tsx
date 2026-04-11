@@ -1,20 +1,19 @@
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono, Press_Start_2P } from 'next/font/google'
+import localFont from 'next/font/local'
 import React from 'react'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
-const pixelFont = Press_Start_2P({
-  weight: '400',
-  subsets: ["latin"],
-  variable: '--font-pixel'
+const retroFont = localFont({
+  src: '../public/fonts/retro.otf',
+  variable: '--font-retro'
 });
 
 export const metadata: Metadata = {
-  title: 'TyperVX - Professional Photoshop Extension',
-  description: 'TyperVX: An enhanced fork of TypeR with advanced typography features, keyboard shortcuts, and theme system for Adobe Photoshop.',
-  generator: 'v0.app',
+  title: 'TyperNull',
+  description: 'A more advanced version of typertools with a new UI, new features, and lots of bug fixes.',
   icons: {
     icon: [
       {
@@ -51,10 +50,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={`font-sans antialiased bg-background ${pixelFont.variable}`}>
-        {/* Subtle grid background */}
-        <div className="fixed inset-0 bg-[linear-gradient(rgba(34,197,94,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(34,197,94,0.03)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body className={`font-sans antialiased bg-background ${retroFont.variable}`} suppressHydrationWarning>
+        {/* Halftone dot pattern */}
+        <div className="fixed inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.08)_1.5px,transparent_1.5px)] bg-[size:16px_16px] pointer-events-none opacity-70" />
+        {/* Global Paper Texture Overlay */}
+        <div className="fixed inset-0 z-[100] pointer-events-none bg-paper mix-blend-overlay" />
 
         <div className="relative z-10 flex flex-col min-h-screen">
           <Header />

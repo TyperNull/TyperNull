@@ -2,8 +2,8 @@ import Gallery from "@/components/gallery"
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'Gallery - TyperVX',
-    description: 'See what you can create with TyperVX.',
+    title: 'Gallery - TyperNull',
+    description: 'See what you can create with TyperNull.',
 }
 
 export default function GalleryPage() {

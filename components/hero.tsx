@@ -7,52 +7,44 @@ export default function Hero() {
   return (
     <section className="relative pt-12 pb-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto text-center">
-        {/* Pixel Font Title */}
+        {/* Retro Font Title */}
         <div className="mb-12 py-8">
-          <h1 className="font-pixel text-4xl sm:text-6xl md:text-8xl text-primary tracking-tighter drop-shadow-[0_0_20px_rgba(34,197,94,0.4)] animate-pulse">
-            TYPERVX
+          <h1 className="section-header text-6xl sm:text-8xl md:text-9xl mb-4 animate-[pulse_3s_ease-in-out_infinite]">
+            TYPERNULL
           </h1>
         </div>
 
         {/* Subtitle */}
         <h1 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
-          Advanced Typography Tool for <span className="text-secondary">Adobe Photoshop</span>
+          A more advanced version of <span className="text-secondary">Typertools</span>
         </h1>
 
         <p className="text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-          Take control of your typography workflow. Enhanced keyboard shortcuts, intelligent folder management, and
-          multiple themes.
-          <br />
-          <span className="text-primary font-mono text-sm">Built for designers who demand efficiency.</span>
+          A complete rewrite of <span className="text-secondary">typertools</span> with a new UI, new features, and lots of bug fixes.
         </p>
+        <div className="mb-12">
+          <span className="comic-speech-bubble text-primary text-sm relative"><span className="pulse">●</span> Version 1.0.0 now available</span>
+        </div>
 
         {/* CTA Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-6 mb-12">
           <Link
-            href="https://github.com/kevinmartz/TyperVX/releases/latest"
+            href="#"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-md font-mono font-semibold hover:bg-primary/90 transition-all hover:scale-105"
+            className="comic-button px-8 py-4 flex items-center justify-center gap-2 text-lg hover:scale-105"
           >
             <Download className="w-5 h-5" />
             DOWNLOAD
           </Link>
           <Link
             href="/features"
-            className="flex items-center gap-2 border border-border hover:border-primary/50 px-6 py-3 rounded-md font-mono font-semibold text-muted-foreground hover:text-foreground transition-all"
+            className="comic-button bg-card text-foreground px-8 py-4 flex items-center justify-center gap-2 text-lg hover:bg-primary/20 hover:scale-105"
           >
-            FEATURES
-            <ArrowRight className="w-4 h-4" />
+            NEW FEATURES
+            <ArrowRight className="w-5 h-5" />
           </Link>
-          <Link
-            href="https://github.com/kevinmartz/TyperVX"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 border border-border hover:border-primary/50 px-6 py-3 rounded-md font-mono font-semibold text-muted-foreground hover:text-foreground transition-all"
-          >
-            <Github className="w-5 h-5" />
-            GITHUB
-          </Link>
+
         </div>
       </div>
     </section>

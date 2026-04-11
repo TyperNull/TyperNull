@@ -2,8 +2,8 @@ import Usage from "@/components/usage"
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'Usage - TyperVX',
-    description: 'How to use TyperVX effectively.',
+    title: 'Usage - TyperNull',
+    description: 'How to use TyperNull effectively.',
 }
 
 export default function UsagePage() {
