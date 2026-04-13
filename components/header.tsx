@@ -2,7 +2,8 @@
 
 import Link from "next/link"
 import { useState, useEffect } from "react"
-import { Github, Download, Menu, X } from "lucide-react"
+import { Menu, X } from "lucide-react"
+import DownloadButton from "@/components/download-button"
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -58,15 +59,11 @@ export default function Header() {
             >
               Bug / Feature Request
             </Link>
-            <Link
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
+            <DownloadButton
               className="comic-button text-xs px-4 py-2 flex items-center gap-2"
-            >
-              <Download className="w-4 h-4" />
-              Download
-            </Link>
+              iconClassName="w-4 h-4"
+              label="Download"
+            />
             
           </div>
 
@@ -103,14 +100,11 @@ export default function Header() {
               >
                 Tracker
               </Link>
-              <Link
-                href="#"
-                target="_blank"
+              <DownloadButton
                 className="comic-button flex-1 px-4 py-2 text-sm flex items-center justify-center gap-2"
-              >
-                <Download className="w-4 h-4" />
-                Download
-              </Link>
+                iconClassName="w-4 h-4"
+                label="Download"
+              />
               
             </div>
           </div>

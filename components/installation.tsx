@@ -1,5 +1,5 @@
-import { Star, Terminal, Download, ExternalLink } from "lucide-react"
-import Link from "next/link"
+import { Star, Terminal, ExternalLink } from "lucide-react"
+import DownloadButton from "@/components/download-button"
 
 export default function Installation() {
   return (
@@ -39,15 +39,11 @@ export default function Installation() {
               </div>
             </div>
 
-            <Link
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
+            <DownloadButton
               className="comic-button text-sm px-5 py-2 inline-flex items-center gap-2"
-            >
-              <Download className="w-4 h-4" />
-              Download Now
-            </Link>
+              iconClassName="w-4 h-4"
+              label="Download Now"
+            />
           </div>
         </div>
 

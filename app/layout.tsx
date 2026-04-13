@@ -51,7 +51,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`font-sans antialiased bg-background ${retroFont.variable}`} suppressHydrationWarning>
+      <body className={`font-sans antialiased bg-background ${retroFont.variable} overflow-x-hidden`} suppressHydrationWarning>
         {/* Halftone dot pattern */}
         <div className="fixed inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.08)_1.5px,transparent_1.5px)] bg-[size:16px_16px] pointer-events-none opacity-70" />
         {/* Global Paper Texture Overlay */}
