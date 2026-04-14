@@ -1,5 +1,11 @@
-import { Star, Terminal, ExternalLink } from "lucide-react"
+import { Star } from "lucide-react"
 import DownloadButton from "@/components/download-button"
+
+const usageSteps = [
+  { step: "1", title: "Open Adobe Photoshop", desc: "Launch your Photoshop application" },
+  { step: "2", title: "Navigate to Extensions", desc: "Window → Extensions → TyperNull" },
+  { step: "3", title: "Start Using", desc: "TyperNull is ready to enhance your workflow" },
+]
 
 export default function Installation() {
   return (
@@ -20,11 +26,10 @@ export default function Installation() {
               <Star className="w-5 h-5 text-primary" />
               <h3 className="font-retro tracking-wide text-xl text-primary">RECOMMENDED</h3>
             </div>
-            <p className="text-muted-foreground text-sm mb-6">Download the latest release and run the installer.</p>
 
             <div className="space-y-3 mb-6">
               <div className="code-block">
-                <span className="text-muted-foreground"># 1. Download from Releases</span>
+                <span className="text-muted-foreground"># 1. Click Download</span>
               </div>
               <div className="code-block">
                 <span className="text-muted-foreground"># 2. Extract the archive (YES EXTRACT IT!)</span>
@@ -44,6 +49,33 @@ export default function Installation() {
               iconClassName="w-4 h-4"
               label="Download Now"
             />
+          </div>
+        </div>
+
+        {/* Usage / Quick Start */}
+        <div className="mt-16 mb-12">
+          <h2 className="section-header mb-2">
+            <span className="text-foreground">USAGE</span>
+          </h2>
+          <p className="text-muted-foreground font-mono text-sm">// Easy 3 steps to start</p>
+        </div>
+
+        <div className="terminal-card p-6">
+          <h3 className="font-retro tracking-wide text-xl text-foreground mb-6 flex items-center gap-2">
+            <span className="text-primary">$</span> ./quickstart
+          </h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            {usageSteps.map((item) => (
+              <div key={item.step} className="flex gap-4">
+                <div className="w-10 h-10 rounded-md bg-primary/20 border border-primary/40 flex items-center justify-center font-retro tracking-wide text-xl text-primary flex-shrink-0">
+                  {item.step}
+                </div>
+                <div>
+                  <p className="font-mono font-semibold text-foreground">{item.title}</p>
+                  <p className="text-sm text-muted-foreground mt-1">{item.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

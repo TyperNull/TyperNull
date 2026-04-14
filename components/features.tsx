@@ -39,6 +39,25 @@ const features = [
   },
 ]
 
+const tips = [
+  {
+    title: "Assign Shortcuts",
+    desc: "Edit any style → Find Keyboard Shortcut section → Click field → Press desired keys → Save. Supports Ctrl+Number, brackets, and symbol combinations.",
+  },
+  {
+    title: "Manage Folders",
+    desc: "Open folders apply styles automatically. Closed folders show colored borders indicating inactive state. Copy shortcuts between folders with automatic matching.",
+  },
+  {
+    title: "Switch Themes",
+    desc: "Access theme settings in the main interface. Choose from Default, Purple Ocean, Midnight, Neon Pink, and Pinky Pink themes.",
+  },
+  {
+    title: "AutoHotkey Tip",
+    desc: "Use key hold timing (50ms) in AHK scripts for reliable detection with Adobe CEP polling cycle.",
+  },
+]
+
 export default function Features() {
   return (
     <section id="features" className="py-16 px-4 sm:px-6 lg:px-8">
@@ -74,6 +93,23 @@ export default function Features() {
                   </ul>
                 </div>
               </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Tips Section */}
+        <div className="mt-16 mb-12">
+          <h2 className="section-header mb-2">
+            <span className="text-foreground">TIPS</span>
+          </h2>
+          <p className="text-muted-foreground font-mono text-sm">// Get the most out of TyperNull</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {tips.map((tip, idx) => (
+            <div key={idx} className="terminal-card p-5">
+              <h4 className="font-retro tracking-wide text-xl text-primary mb-3">{tip.title}</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">{tip.desc}</p>
             </div>
           ))}
         </div>

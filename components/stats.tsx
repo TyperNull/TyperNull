@@ -8,7 +8,7 @@ export default function Stats() {
 
   const stats = [
     { value: "25+", label: "FEATURES" },
-    { value: "7", label: "THEMES" },
+    { value: "3", label: "THEMES" },
     { value: "9", label: "LANGUAGES" },
   ]
 
@@ -80,10 +80,10 @@ export default function Stats() {
 
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Although I love open source, I built TyperNull primarily as a hyper-tuned personal workflow tool.
+                Although I love open source, I built TyperNull primarily as a personal workflow tool.
               </p>
               <p>
-                Keeping it closed-source for now allows me to focus completely on its core features and personal use-cases without needing to manage community PRs, rewrite messy codebase structures for public consumption, or act as a full-time maintainer.
+                Keeping it closed-source for now allows me to focus completely on its core features and personal use cases, without needing to manage community PRs, rewrite messy codebase structures for public consumption, or act as a full-time maintainer.
               </p>
               <p>
                 Maybe one day it will be open-sourced, but for now, it remains a purely personal project that I share free of charge!

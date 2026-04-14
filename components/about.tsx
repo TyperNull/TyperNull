@@ -39,25 +39,13 @@ export default function About() {
         </div>
 
         {/* some footnotes */}
-        <div className="grid md:grid-cols-3 gap-4 mt-8">
-          <div className="terminal-card p-5 text-center">
+        <div className="flex justify-start mt-8">
+          <div className="terminal-card p-5 text-center inline-block">
             <div className="text-primary font-bold font-mono mb-2">**ME ON DISCORD</div>
             <p className="text-secondary">
               <a href="https://discord.com/users/972892116835520583">discord@Null</a>
             </p>
           </div>
-          <Link href="/feedback?type=feature" className="terminal-card p-5 text-center hover:-translate-y-1 transition-transform cursor-pointer block">
-            <div className="text-primary font-bold font-mono mb-2">**REQUEST FEATURES</div>
-            <p className="text-sm text-muted-foreground">
-              Click here to request features i might add them if i like them but no promises.
-            </p>
-          </Link>
-          <Link href="/feedback?type=bug" className="terminal-card p-5 text-center hover:-translate-y-1 transition-transform cursor-pointer block">
-            <div className="text-primary font-bold font-mono mb-2">**BUG REPORT</div>
-            <p className="text-sm text-muted-foreground">
-              Found an issue? Report bugs here.
-            </p>
-          </Link>
         </div>
       </div>
     </section>

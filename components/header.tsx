@@ -17,7 +17,7 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const navItems = ["Features", "About", "Gallery", "Install", "Usage"]
+  const navItems = ["Features", "About", "Gallery", "Install"]
 
   return (
     <header
@@ -53,17 +53,6 @@ export default function Header() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-3">
-            <Link
-              href="/feedback"
-              className="comic-button bg-card text-foreground border-primary/50 text-xs px-4 py-2 flex items-center gap-2 hover:bg-primary/20"
-            >
-              Bug / Feature Request
-            </Link>
-            <DownloadButton
-              className="comic-button text-xs px-4 py-2 flex items-center gap-2"
-              iconClassName="w-4 h-4"
-              label="Download"
-            />
             
           </div>
 
@@ -94,17 +83,6 @@ export default function Header() {
               ))}
             </ul>
             <div className="flex gap-3 mt-4 pt-4 border-t border-border/30">
-              <Link
-                href="/feedback"
-                className="comic-button bg-card text-foreground border-primary/50 flex-1 px-4 py-2 text-sm flex items-center justify-center gap-2"
-              >
-                Tracker
-              </Link>
-              <DownloadButton
-                className="comic-button flex-1 px-4 py-2 text-sm flex items-center justify-center gap-2"
-                iconClassName="w-4 h-4"
-                label="Download"
-              />
               
             </div>
           </div>

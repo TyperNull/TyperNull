@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import DownloadButton from "@/components/download-button"
 
 export default function Hero() {
   return (
@@ -28,12 +27,13 @@ export default function Hero() {
         </div>
 
         {/* CTA Buttons */}
-        <div className="flex flex-wrap justify-center gap-6 mb-12">
-          <DownloadButton
+        <div className="flex flex-wrap justify-center gap-4 mb-12 max-w-4xl mx-auto">
+          <Link
+            href="/install"
             className="comic-button px-8 py-4 flex items-center justify-center gap-2 text-lg hover:scale-105"
-            iconClassName="w-5 h-5"
-            label="DOWNLOAD"
-          />
+          >
+            DOWNLOAD
+          </Link>
           <Link
             href="/features"
             className="comic-button bg-card text-foreground px-8 py-4 flex items-center justify-center gap-2 text-lg hover:bg-primary/20 hover:scale-105"
@@ -41,7 +41,18 @@ export default function Hero() {
             NEW FEATURES
             <ArrowRight className="w-5 h-5" />
           </Link>
-
+          <Link
+            href="/feedback"
+            className="comic-button bg-card text-foreground px-8 py-4 flex items-center justify-center gap-2 text-lg hover:bg-primary/20 hover:scale-105"
+          >
+            BUG / FEATURE REQUEST
+          </Link>
+          <Link
+            href="/translate"
+            className="comic-button bg-card text-foreground px-8 py-4 flex items-center justify-center gap-2 text-lg hover:bg-primary/20 hover:scale-105"
+          >
+            HELP WITH TRANSLATION
+          </Link>
         </div>
       </div>
     </section>
