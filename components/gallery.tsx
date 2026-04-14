@@ -1,7 +1,6 @@
 "use client"
 
-const IS_PROD = process.env.NODE_ENV === "production"
-const PATH_PREFIX = IS_PROD ? "/TyperNull-site" : ""
+const PATH_PREFIX = process.env.NEXT_PUBLIC_BASE_PATH || ""
 
 const screenshots = [
   {

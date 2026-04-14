@@ -24,7 +24,7 @@ export default function Installation() {
           <div className="terminal-card p-6 border-primary/30">
             <div className="flex items-center gap-2 mb-4">
               <Star className="w-5 h-5 text-primary" />
-              <h3 className="font-retro tracking-wide text-xl text-primary">RECOMMENDED</h3>
+              <h3 className="font-retro tracking-wide text-xl text-primary"></h3>
             </div>
 
             <div className="space-y-3 mb-6">
@@ -52,10 +52,10 @@ export default function Installation() {
           </div>
         </div>
 
-        {/* Usage / Quick Start */}
+        {/* How to Activate */}
         <div className="mt-16 mb-12">
           <h2 className="section-header mb-2">
-            <span className="text-foreground">USAGE</span>
+            <span className="text-foreground">HOW TO ACTIVATE EXTENSION</span>
           </h2>
           <p className="text-muted-foreground font-mono text-sm">// Easy 3 steps to start</p>
         </div>

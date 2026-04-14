@@ -17,7 +17,7 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const navItems = ["Features", "About", "Gallery", "Install"]
+  const navItems = ["Features", "About", "Gallery", "Install", "How to Use"]
 
   return (
     <header
@@ -42,7 +42,7 @@ export default function Header() {
             {navItems.map((item) => (
               <li key={item}>
                 <Link
-                  href={`/${item.toLowerCase()}`}
+                  href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
                   className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors duration-200"
                 >
                   [{item}]
@@ -73,7 +73,7 @@ export default function Header() {
               {navItems.map((item) => (
                 <li key={item}>
                   <Link
-                    href={`/${item.toLowerCase()}`}
+                    href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
                     className="block text-xl font-sans text-muted-foreground hover:text-primary transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
