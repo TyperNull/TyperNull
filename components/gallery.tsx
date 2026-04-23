@@ -6,7 +6,7 @@ const PATH_PREFIX = process.env.NEXT_PUBLIC_BASE_PATH || ""
 
 const screenshots = [
   {
-    src: `${PATH_PREFIX}/sc/vid/uishowcase.mp4`,
+    src: `${PATH_PREFIX}/videos/uishowcase.mp4`,
     alt: "UI Showcase",
     label: "Main Interface",
   },
