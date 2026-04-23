@@ -1,4 +1,4 @@
-import { Monitor, Apple } from "lucide-react"
+import { Monitor, Apple, Cpu } from "lucide-react"
 
 export function PhotoshopIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -12,35 +12,47 @@ export function PhotoshopIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export default function SystemRequirements() {
+  const requirements = [
+    {
+      icon: Monitor,
+      title: "Windows",
+      desc: "Windows 10 or newer",
+      color: "primary"
+    },
+    {
+      icon: Apple,
+      title: "macOS",
+      desc: "macOS 12.8 or newer",
+      color: "accent"
+    },
+    {
+      icon: PhotoshopIcon,
+      title: "Photoshop",
+      desc: "CC 2015 or newer",
+      color: "primary"
+    },
+  ]
+
   return (
     <section className="py-2 px-4 sm:px-6 lg:px-8">
       <div className="max-w-5xl mx-auto">
-        <div className="terminal-card p-6 terminal-glow">
-          <h3 className="font-retro tracking-wide text-xl text-foreground mb-4 flex items-center gap-2">
-            <span className="text-secondary">**</span>SYSTEM REQUIREMENTS
+        <div className="glass-card p-6">
+          <h3 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-primary" />
+            System Requirements
           </h3>
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="flex items-center gap-3">
-              <Monitor className="w-5 h-5 text-primary" />
-              <div>
-                <div className="text-sm font-mono text-foreground">Windows</div>
-                <div className="text-xs text-muted-foreground">Windows 10 or newer</div>
+            {requirements.map((req, idx) => (
+              <div key={idx} className="flex items-center gap-3">
+                <div className={`w-10 h-10 rounded-xl bg-${req.color}/10 flex items-center justify-center`}>
+                  <req.icon className={`w-5 h-5 text-${req.color}`} />
+                </div>
+                <div>
+                  <div className="text-sm font-medium text-foreground">{req.title}</div>
+                  <div className="text-xs text-muted-foreground">{req.desc}</div>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <Apple className="w-5 h-5 text-primary" />
-              <div>
-                <div className="text-sm font-mono text-foreground">macOS</div>
-                <div className="text-xs text-muted-foreground">macOS 12.8 or newer</div>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <PhotoshopIcon className="w-5 h-5 text-primary" />
-              <div>
-                <div className="text-sm font-mono text-foreground">Photoshop</div>
-                <div className="text-xs text-muted-foreground">CC 2015 or newer</div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

@@ -1,5 +1,7 @@
 "use client"
 
+import { Image as ImageIcon, Play } from "lucide-react"
+
 const PATH_PREFIX = process.env.NEXT_PUBLIC_BASE_PATH || ""
 
 const screenshots = [
@@ -30,19 +32,21 @@ export default function Gallery() {
   const others = screenshots.slice(1)
 
   return (
-    <section id="gallery" className="py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section id="gallery" className="py-20 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="mb-12">
-          <h2 className="section-header mb-2">
-            <span className="text-foreground">SHOWCASE</span>
-          </h2>
-          <p className="text-muted-foreground font-mono text-sm">// See TyperNull in action</p>
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass mb-4">
+            <ImageIcon className="w-4 h-4 text-primary" />
+            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Gallery</span>
+          </div>
+          <h2 className="section-title mb-4">See it in action</h2>
+          <p className="section-subtitle">Experience the modern interface</p>
         </div>
 
         {/* Featured Showcase */}
-        <div className="mb-12">
-          <div className="terminal-card overflow-hidden group border-primary/30">
+        <div className="mb-6">
+          <div className="glass-card overflow-hidden group">
             <div className="aspect-video bg-muted/30 relative overflow-hidden">
               {featured.src.endsWith(".mp4") ? (
                 <video
@@ -62,17 +66,20 @@ export default function Gallery() {
               )}
               {/* Overlay Label for Featured */}
               <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background/90 to-transparent">
-                <h3 className="font-pixel text-xl text-primary drop-shadow-md">{featured.label}</h3>
-                <p className="text-muted-foreground font-mono text-sm mt-1">Full video demonstration of the VX interface</p>
+                <div className="flex items-center gap-2">
+                  <Play className="w-5 h-5 text-primary" />
+                  <h3 className="font-semibold text-lg text-foreground">{featured.label}</h3>
+                </div>
+                <p className="text-muted-foreground text-sm mt-1">Full video demonstration of the interface</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Secondary Grid */}
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {others.map((screenshot, idx) => (
-            <div key={idx} className="terminal-card overflow-hidden group hover:border-primary/50 transition-colors">
+            <div key={idx} className="glass-card overflow-hidden group">
               <div className="aspect-video bg-muted/20 relative overflow-hidden">
                 <img
                   src={screenshot.src || "/placeholder.svg"}
@@ -81,8 +88,8 @@ export default function Gallery() {
                   loading="lazy"
                 />
               </div>
-              <div className="p-3 border-t border-border/30">
-                <p className="font-mono text-xs text-muted-foreground uppercase tracking-widest">{screenshot.label}</p>
+              <div className="p-4 border-t border-border/50">
+                <p className="text-sm font-medium text-foreground">{screenshot.label}</p>
               </div>
             </div>
           ))}

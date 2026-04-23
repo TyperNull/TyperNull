@@ -159,14 +159,14 @@ function TrackerContent() {
         <div className="flex flex-wrap gap-4">
           <button
             onClick={() => setSubmitModalType('feature')}
-            className="comic-button px-4 py-2 text-sm flex items-center gap-2 font-mono uppercase"
+            className="glow-button no-lift text-white px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm flex items-center justify-center gap-2 cursor-pointer"
           >
             <Lightbulb className="w-4 h-4" />
             Request Feature
           </button>
           <button
             onClick={() => setSubmitModalType('bug')}
-            className="comic-card px-4 py-2 text-sm flex items-center gap-2 font-mono uppercase bg-transparent text-primary hover:bg-primary/10 transition-colors cursor-pointer"
+            className="glass-card no-lift px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm flex items-center justify-center gap-2 font-medium text-foreground hover:bg-secondary/80 transition-colors cursor-pointer"
           >
             <Bug className="w-4 h-4" />
             Report Issue
@@ -181,7 +181,7 @@ function TrackerContent() {
             key={tab}
             onClick={() => setActiveTab(tab)}
             className={`px-6 py-3 font-retro tracking-widest text-sm uppercase transition-colors whitespace-nowrap cursor-pointer ${activeTab === tab
-              ? 'border-b-2 border-primary text-primary drop-shadow-[0_0_10px_rgba(34,197,94,0.3)]'
+              ? 'border-b-2 border-primary text-primary'
               : 'text-muted-foreground hover:text-foreground'
               }`}
           >
@@ -285,7 +285,7 @@ function TrackerContent() {
                     setSubmitTitle('');
                     setSubmitBody('');
                   }}
-                  className="comic-button mt-6 px-6 py-2"
+                  className="glow-button no-lift text-white mt-6 px-6 py-2 cursor-pointer"
                 >
                   CLOSE
                 </button>
@@ -342,9 +342,9 @@ function TrackerContent() {
                   <button
                     disabled={isSubmitting}
                     type="submit"
-                    className="comic-button px-6 py-2 font-sans tracking-widest text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="glow-button no-lift text-white px-4 py-2 md:px-6 md:py-2 text-xs md:text-sm disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                   >
-                    {isSubmitting ? "SENDING..." : "SUBMIT ANONYMOUSLY"}
+                    {isSubmitting ? "SENDING..." : "SUBMIT"}
                   </button>
                 </div>
               </form>

@@ -228,17 +228,13 @@ export default function TranslatePage() {
                 ></div>
               </div>
             </div>
-            <div className="hidden md:flex gap-2">
-              <button onClick={expandAll} className="text-xs font-mono text-muted-foreground hover:text-foreground">Expand</button>
-              <button onClick={collapseAll} className="text-xs font-mono text-muted-foreground hover:text-foreground">Collapse</button>
-            </div>
           </div>
         </div>
       </div>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         {/* Intro */}
-        <div className="terminal-card p-6 mb-8 flex gap-4 items-start">
+        <div className="glass-card p-6 mb-8 flex gap-4 items-start">
           <div className="text-3xl">🧩</div>
           <div>
             <h2 className="text-xl font-bold text-foreground mb-2 font-retro leading-tight tracking-wide">Community Translation Template</h2>
@@ -263,16 +259,33 @@ export default function TranslatePage() {
               className="w-full bg-card border border-border/50 rounded-md pl-9 pr-4 py-2 text-sm text-foreground focus:outline-none focus:border-primary transition-colors"
             />
           </div>
-          <div className="flex p-1 bg-card rounded-md border border-border/50">
-            {(['all', 'missing', 'done'] as const).map(f => (
+          <div className="flex items-center gap-2">
+            <div className="flex p-1 glass-card no-lift rounded-xl">
+              {(['all', 'missing', 'done'] as const).map(f => (
+                <button
+                  key={f}
+                  onClick={() => setFilter(f)}
+                  className={`px-4 py-2 text-xs font-medium rounded-lg transition-colors ${filter === f ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-secondary'}`}
+                >
+                  {f.charAt(0).toUpperCase() + f.slice(1)}
+                </button>
+              ))}
+            </div>
+
+            <div className="hidden md:flex gap-2">
               <button
-                key={f}
-                onClick={() => setFilter(f)}
-                className={`px-4 py-1.5 text-xs font-mono rounded transition-colors ${filter === f ? 'bg-primary text-background' : 'text-muted-foreground hover:text-foreground'}`}
+                onClick={expandAll}
+                className="px-3 py-2 text-xs font-medium text-muted-foreground hover:text-foreground glass-card no-lift rounded-xl hover:bg-secondary/80 transition-colors"
               >
-                {f.charAt(0).toUpperCase() + f.slice(1)}
+                Expand
               </button>
-            ))}
+              <button
+                onClick={collapseAll}
+                className="px-3 py-2 text-xs font-medium text-muted-foreground hover:text-foreground glass-card no-lift rounded-xl hover:bg-secondary/80 transition-colors"
+              >
+                Collapse
+              </button>
+            </div>
           </div>
         </div>
 
@@ -418,13 +431,13 @@ export default function TranslatePage() {
           <div className="flex w-full sm:w-auto gap-3">
             <button
               onClick={copyProperties}
-              className="comic-button border-border/50 bg-surface text-foreground flex-1 sm:flex-none px-4 py-2 text-sm flex items-center justify-center gap-2 hover:bg-surface2"
+              className="glass-card flex-1 sm:flex-none px-4 py-2 text-sm font-medium text-foreground flex items-center justify-center gap-2 hover:bg-secondary/80 transition-colors"
             >
               <Copy className="w-4 h-4" /> Copy
             </button>
             <button
               onClick={exportProperties}
-              className="comic-button flex-1 sm:flex-none px-6 py-2 text-sm flex items-center justify-center gap-2"
+              className="glow-button text-white flex-1 sm:flex-none px-6 py-2 text-sm flex items-center justify-center gap-2"
             >
               <Download className="w-4 h-4" /> Export
             </button>

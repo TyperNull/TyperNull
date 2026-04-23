@@ -1,51 +1,133 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { useState, useEffect } from "react"
-import { Menu, X } from "lucide-react"
-import DownloadButton from "@/components/download-button"
+import { Menu, X, Download, Sun, Moon } from "lucide-react"
+import { useTheme } from "next-themes"
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const [isHidden, setIsHidden] = useState(false)
+  const { resolvedTheme, setTheme } = useTheme()
+
+  const toggleThemeAnimated = (e: React.MouseEvent) => {
+    const nextTheme = resolvedTheme === "dark" ? "light" : "dark"
+    const x = e.clientX
+    const y = e.clientY
+
+    const maxX = Math.max(x, window.innerWidth - x)
+    const maxY = Math.max(y, window.innerHeight - y)
+    const r = Math.hypot(maxX, maxY)
+
+    const existing = document.getElementById("theme-transition-overlay")
+    if (existing) existing.remove()
+
+    const overlay = document.createElement("div")
+    overlay.id = "theme-transition-overlay"
+    overlay.style.position = "fixed"
+    overlay.style.inset = "0"
+    overlay.style.zIndex = "9999"
+    overlay.style.pointerEvents = "none"
+    overlay.style.background = nextTheme === "dark" ? "rgba(10,10,10,0.72)" : "rgba(250,250,250,0.72)"
+    overlay.style.backdropFilter = "blur(10px)"
+    overlay.style.clipPath = `circle(0px at ${x}px ${y}px)`
+    overlay.style.transition = "clip-path 520ms cubic-bezier(0.2, 0, 0.2, 1), opacity 160ms ease-out"
+    overlay.style.opacity = "1"
+
+    document.body.appendChild(overlay)
+
+    // Force the initial state to apply before animating.
+    overlay.getBoundingClientRect()
+    requestAnimationFrame(() => {
+      overlay.style.clipPath = `circle(${r}px at ${x}px ${y}px)`
+    })
+
+    // Switch theme after the overlay has (almost) fully covered the UI.
+    window.setTimeout(() => {
+      setTheme(nextTheme)
+    }, 480)
+
+    // Fade away the overlay (same color as the new theme background).
+    window.setTimeout(() => {
+      overlay.style.opacity = "0"
+    }, 520)
+
+    window.setTimeout(() => {
+      overlay.remove()
+    }, 720)
+  }
 
   useEffect(() => {
+    setMounted(true)
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
+      const currentY = window.scrollY
+      setIsScrolled(currentY > 10)
+
+      if (isMobileMenuOpen) {
+        setIsHidden(false)
+      } else if (currentY < 40) {
+        setIsHidden(false)
+      } else {
+        setIsHidden(true)
+      }
     }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [isMobileMenuOpen])
 
-  const navItems = ["Features", "About", "Gallery", "Install", "How to Use"]
+  const navItems = [
+    { name: "Features", href: "/features" },
+    { name: "About", href: "/about" },
+    { name: "Gallery", href: "/gallery" },
+    { name: "Install", href: "/install" },
+    { name: "Guide", href: "/how-to-use" },
+  ]
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/95 backdrop-blur-md border-b border-border/50" : "bg-transparent"
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled
+          ? "py-3"
+          : "py-5"
+      } ${isHidden ? "-translate-y-full opacity-0 pointer-events-none" : "translate-y-0 opacity-100"}`}
     >
-      {/* Sticky nav */}
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div className="flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav
+          className={`flex items-center justify-between px-6 py-3 rounded-2xl transition-all duration-500 ${
+            isScrolled
+              ? "glass shadow-lg"
+              : "bg-transparent"
+          }`}
+        >
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-md bg-transparent border-2 border-primary/50 text-shadow-none shadow-[2px_2px_0_rgba(34,197,94,0.5)] flex items-center justify-center font-retro text-2xl text-primary group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:shadow-[0px_0px_0_rgba(34,197,94,0.5)] transition-all">
-              T
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className="w-9 h-9 rounded-xl overflow-hidden">
+              <Image
+                src="/favicon/fav.png"
+                alt="TyperNull"
+                width={36}
+                height={36}
+                className="w-full h-full object-cover"
+                priority
+              />
             </div>
-            <span className="text-xl font-retro tracking-widest text-primary stroke-primary stroke-2 drop-shadow-[2px_2px_0px_rgba(34,197,94,0.4)] group-hover:text-foreground transition-colors">
-              TYPERNULL
+            <span className="text-lg font-normal tracking-tight text-foreground uppercase" style={{ fontFamily: 'var(--font-retro), sans-serif' }}>
+              TyperNull
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <ul className="hidden md:flex items-center gap-6">
+          <ul className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
-              <li key={item}>
+              <li key={item.name}>
                 <Link
-                  href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="text-sm font-mono text-muted-foreground hover:text-primary transition-colors duration-200"
+                  href={item.href}
+                  className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground rounded-lg hover:bg-secondary transition-all"
                 >
-                  [{item}]
+                  {item.name}
                 </Link>
               </li>
             ))}
@@ -53,41 +135,79 @@ export default function Header() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-3">
-            
+            <button
+              type="button"
+              className="p-2 text-muted-foreground hover:text-foreground rounded-xl hover:bg-secondary transition-all cursor-pointer"
+              aria-label="Toggle dark mode"
+              onClick={toggleThemeAnimated}
+            >
+              {mounted && resolvedTheme === "dark" ? (
+                <Sun className="w-4 h-4" />
+              ) : (
+                <Moon className="w-4 h-4" />
+              )}
+            </button>
+            <Link
+              href="/install"
+              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-primary to-accent rounded-xl shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-105 transition-all"
+            >
+              <Download className="w-4 h-4" />
+              Download
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-muted-foreground hover:text-foreground"
+            className="md:hidden p-2 text-muted-foreground hover:text-foreground rounded-lg hover:bg-secondary transition-all"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
-        </div>
+        </nav>
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-border/30 pt-4">
-            <ul className="space-y-3">
+          <div className="md:hidden mt-2 bg-background/95 border border-border/50 shadow-lg rounded-2xl p-4 animate-in slide-in-from-top-2 fade-in duration-150">
+            <ul className="space-y-1">
               {navItems.map((item) => (
-                <li key={item}>
+                <li key={item.name}>
                   <Link
-                    href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="block text-xl font-sans text-muted-foreground hover:text-primary transition-colors"
+                    href={item.href}
+                    className="block px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground rounded-xl hover:bg-secondary transition-all"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    {item}
+                    {item.name}
                   </Link>
                 </li>
               ))}
             </ul>
-            <div className="flex gap-3 mt-4 pt-4 border-t border-border/30">
-              
+            <div className="mt-3 pt-3 border-t border-border">
+              <button
+                type="button"
+                className="flex items-center justify-center gap-2 w-full px-4 py-3 mb-3 text-sm font-medium text-foreground bg-secondary/80 hover:bg-secondary rounded-xl transition-colors cursor-pointer"
+                aria-label="Toggle dark mode"
+                onClick={toggleThemeAnimated}
+              >
+                {mounted && resolvedTheme === "dark" ? (
+                  <Sun className="w-4 h-4" />
+                ) : (
+                  <Moon className="w-4 h-4" />
+                )}
+                {mounted && resolvedTheme === "dark" ? "Light mode" : "Dark mode"}
+              </button>
+              <Link
+                href="/install"
+                className="flex items-center justify-center gap-2 w-full px-4 py-3 text-sm font-medium text-white bg-gradient-to-r from-primary to-accent rounded-xl"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <Download className="w-4 h-4" />
+                Download
+              </Link>
             </div>
           </div>
         )}
-      </nav>
+      </div>
     </header>
   )
 }

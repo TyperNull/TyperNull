@@ -1,21 +1,36 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono, Press_Start_2P } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import localFont from 'next/font/local'
 import React from 'react'
 import './globals.css'
+import { ThemeProvider } from "@/components/theme-provider"
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: '--font-sans',
+  display: 'swap'
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: '--font-mono',
+  display: 'swap'
+});
+
 const retroFont = localFont({
   src: '../public/fonts/retro.otf',
-  variable: '--font-retro'
+  variable: '--font-retro',
+  display: 'swap'
 });
 
 export const metadata: Metadata = {
-  title: 'TyperNull',
+  title: 'TyperNull — Advanced Typertools',
   description: 'A more advanced version of typertools with a new UI, new features, and lots of bug fixes.',
   icons: {
     icon: [
+      {
+        url: '/favicon/fav.png',
+      },
       {
         url: '/icon-light-32x32.png',
         media: '(prefers-color-scheme: light)',
@@ -37,12 +52,14 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#fafafa' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' }
+  ]
 }
 
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-
-// ... imports
 
 export default function RootLayout({
   children,
@@ -50,20 +67,27 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`font-sans antialiased bg-background ${retroFont.variable} overflow-x-hidden`} suppressHydrationWarning>
-        {/* Halftone dot pattern */}
-        <div className="fixed inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.08)_1.5px,transparent_1.5px)] bg-[size:16px_16px] pointer-events-none opacity-70" />
-        {/* Global Paper Texture Overlay */}
-        <div className="fixed inset-0 z-[100] pointer-events-none bg-paper mix-blend-overlay" />
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} ${retroFont.variable} font-sans antialiased bg-background overflow-x-hidden`} suppressHydrationWarning>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+          {/* Animated Grid Background */}
+          <div className="fixed inset-0 grid-background pointer-events-none opacity-50" />
 
-        <div className="relative z-10 flex flex-col min-h-screen">
-          <Header />
-          <main className="flex-grow">
-            {children}
-          </main>
-          <Footer />
-        </div>
+          {/* Floating Gradient Orbs */}
+          <div className="fixed inset-0 overflow-hidden pointer-events-none">
+            <div className="gradient-orb orb-1 top-20 -left-20" />
+            <div className="gradient-orb orb-2 top-40 right-10" />
+            <div className="gradient-orb orb-3 bottom-20 left-1/3" />
+          </div>
+
+          <div className="relative z-10 flex flex-col min-h-screen">
+            <Header />
+            <main className="flex-grow pt-24 md:pt-28">
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   )
