@@ -1,28 +1,26 @@
 "use client"
 
 import { Image as ImageIcon, Play } from "lucide-react"
-
-const PATH_PREFIX = process.env.NEXT_PUBLIC_BASE_PATH || (process.env.NODE_ENV === "production" ? "/TyperNull" : "")
+import { basePath } from "@/lib/utils"
 
 const screenshots = [
   {
-    src: `${PATH_PREFIX}/videos/uishowcase_web.mp4`,
-    fallbackSrc: `${PATH_PREFIX}/videos/uishowcase.mp4`,
+    src: basePath("/videos/uishowcase.mp4"),
     alt: "UI Showcase",
     label: "Main Interface",
   },
   {
-    src: `${PATH_PREFIX}/sc/visual/UIshowcase3.PNG`,
+    src: basePath("/sc/visual/UIshowcase3.PNG"),
     alt: "Style Editing",
     label: "Style Editor",
   },
   {
-    src: `${PATH_PREFIX}/sc/visual/UIshowcase5.PNG`,
+    src: basePath("/sc/visual/UIshowcase5.PNG"),
     alt: "Settings Interface",
     label: "Settings",
   },
   {
-    src: `${PATH_PREFIX}/sc/visual/Newinstaller.PNG`,
+    src: basePath("/sc/visual/Newinstaller.PNG"),
     alt: "New Installer",
     label: "Multi-Language Installer",
   },
@@ -62,10 +60,6 @@ export default function Gallery() {
                     src={featured.src}
                     type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
                   />
-                  {"fallbackSrc" in featured ? (
-                    <source src={featured.fallbackSrc} type="video/mp4" />
-                  ) : null}
-                  Your browser does not support the video tag.
                 </video>
               ) : (
                 <img

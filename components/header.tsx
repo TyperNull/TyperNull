@@ -5,6 +5,7 @@ import Image from "next/image"
 import { useState, useEffect } from "react"
 import { Menu, X, Download, Sun, Moon } from "lucide-react"
 import { useTheme } from "next-themes"
+import { basePath } from "@/lib/utils"
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -106,7 +107,7 @@ export default function Header() {
           <Link href="/" className="flex items-center gap-2 group">
             <div className="w-9 h-9 rounded-xl overflow-hidden">
               <Image
-                src="/favicon/fav.png"
+                src={basePath("/favicon/fav.png")}
                 alt="TyperNull"
                 width={36}
                 height={36}
