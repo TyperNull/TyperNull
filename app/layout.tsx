@@ -29,14 +29,14 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: '/favicon/fav.png',
+        url: basePath('/favicon/fav.png'),
       },
       {
-        url: '/icon-light-32x32.png',
+        url: basePath('/icon-light-32x32.png'),
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/icon-dark-32x32.png',
+        url: basePath('/icon-dark-32x32.png'),
         media: '(prefers-color-scheme: dark)',
       },
       {
@@ -60,6 +60,7 @@ export const viewport: Viewport = {
 
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import { basePath } from '@/lib/utils'
 
 export default function RootLayout({
   children,
