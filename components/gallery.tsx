@@ -6,7 +6,8 @@ const PATH_PREFIX = process.env.NEXT_PUBLIC_BASE_PATH || ""
 
 const screenshots = [
   {
-    src: `${PATH_PREFIX}/videos/uishowcase.mp4`,
+    src: `${PATH_PREFIX}/videos/uishowcase_web.mp4`,
+    fallbackSrc: `${PATH_PREFIX}/videos/uishowcase.mp4`,
     alt: "UI Showcase",
     label: "Main Interface",
   },
@@ -50,13 +51,22 @@ export default function Gallery() {
             <div className="aspect-video bg-muted/30 relative overflow-hidden">
               {featured.src.endsWith(".mp4") ? (
                 <video
-                  src={featured.src}
                   autoPlay
                   loop
                   muted
                   playsInline
+                  preload="metadata"
                   className="w-full h-full object-cover"
-                />
+                >
+                  <source
+                    src={featured.src}
+                    type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
+                  />
+                  {"fallbackSrc" in featured ? (
+                    <source src={featured.fallbackSrc} type="video/mp4" />
+                  ) : null}
+                  Your browser does not support the video tag.
+                </video>
               ) : (
                 <img
                   src={featured.src || "/placeholder.svg"}
