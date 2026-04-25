@@ -2,7 +2,7 @@
 
 import { Image as ImageIcon, Play } from "lucide-react"
 
-const PATH_PREFIX = process.env.NEXT_PUBLIC_BASE_PATH || ""
+const PATH_PREFIX = process.env.NEXT_PUBLIC_BASE_PATH || (process.env.NODE_ENV === "production" ? "/TyperNull" : "")
 
 const screenshots = [
   {
