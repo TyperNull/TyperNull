@@ -6,7 +6,7 @@ import { Bug, Lightbulb, ExternalLink, Loader2, Info, X, MessageSquare, User } f
 
 const GITHUB_REPO = "TyperNull/TyperNull"
 const FEATURE_WEBHOOK_URL = "https://hook.eu1.make.com/42qgurk4inpamoi0uq9nqx0iguci2t5l"
-const BUG_WEBHOOK_URL = "https://hook.eu1.make.com/u7pgnb8sh81he6v9f3eqiuqgxm66vwis" // PASTE YOUR SECOND MAKE.COM WEBHOOK URL HERE FOR BUGS
+const BUG_WEBHOOK_URL = "https://hook.eu1.make.com/u7pgnb8sh81he6v9f3eqiuqgxm66vwis"
 
 // GitHub label colors mapping widget
 const getStatusBadge = (labels: any[]) => {
@@ -31,20 +31,20 @@ function IssueReplies({ issue }: { issue: any }) {
   const [replies, setReplies] = useState<any[]>([])
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(false)
-  
+
   if (!issue.comments) return null
-  
+
   const fetchReplies = async () => {
     if (isOpen) {
       setIsOpen(false)
       return
     }
-    
+
     if (replies.length > 0) {
       setIsOpen(true)
       return
     }
-    
+
     setLoading(true)
     try {
       // Add a slight artificial delay for the rate-limit anxiety as requested
@@ -59,14 +59,14 @@ function IssueReplies({ issue }: { issue: any }) {
     setLoading(false)
     setIsOpen(true)
   }
-  
+
   return (
     <div className="mt-4 border-t border-border/50 pt-4">
       <button onClick={fetchReplies} className="comic-button bg-transparent border-0 font-mono text-xs text-primary flex items-center gap-2 hover:bg-primary/10 px-3 py-1.5 h-auto uppercase cursor-pointer">
         <MessageSquare className="w-3 h-3" />
         {loading ? "FETCHING..." : isOpen ? "HIDE DEV REPLIES" : `READ DEV REPLIES (${issue.comments})`}
       </button>
-      
+
       {isOpen && replies.length > 0 && (
         <div className="mt-4 space-y-3 pl-4 border-l-2 border-primary/30">
           {replies.map((reply: any) => (
@@ -129,7 +129,7 @@ function TrackerContent() {
     const isClosed = issue.state === 'closed'
     if (activeTab === "finished") return isClosed
     if (isClosed) return false // Hide closed items from open queues
-    
+
     if (activeTab === "all") return true
     const isBug = issue.labels.some((l: any) => l.name.toLowerCase() === 'bug')
     if (activeTab === "bug") return isBug

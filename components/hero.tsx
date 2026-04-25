@@ -18,7 +18,6 @@ export default function Hero() {
         <div className="relative inline-block mb-6">
           {/* Speech bubble badge */}
           <div className="absolute -top-8 right-0 md:-top-10 md:right-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-primary text-white text-xs font-medium shadow-lg shadow-primary/25 whitespace-nowrap">
-            <Sparkles className="w-3 h-3" />
             v1.0.0 out now
             {/* speech bubble tail */}
             <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-primary rotate-45 rounded-sm" />
@@ -33,7 +32,7 @@ export default function Hero() {
         <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-4 leading-relaxed">
           A more advanced version of <span className="text-foreground font-medium">Typertools</span>
         </p>
-        
+
         <p className="text-base text-muted-foreground/80 max-w-xl mx-auto mb-10">
           Complete rewrite with a modern UI, powerful new features, and extensive bug fixes for professional typesetting workflows.
         </p>

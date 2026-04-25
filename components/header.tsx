@@ -7,6 +7,8 @@ import { Menu, X, Download, Sun, Moon } from "lucide-react"
 import { useTheme } from "next-themes"
 import { basePath } from "@/lib/utils"
 
+import { flushSync } from "react-dom"
+
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -16,49 +18,24 @@ export default function Header() {
 
   const toggleThemeAnimated = (e: React.MouseEvent) => {
     const nextTheme = resolvedTheme === "dark" ? "light" : "dark"
-    const x = e.clientX
-    const y = e.clientY
+    const target = e.currentTarget as HTMLElement | null
+    const rect = target?.getBoundingClientRect()
+    const x = rect ? rect.left + rect.width / 2 : window.innerWidth / 2
+    const y = rect ? rect.top + rect.height / 2 : window.innerHeight / 2
 
-    const maxX = Math.max(x, window.innerWidth - x)
-    const maxY = Math.max(y, window.innerHeight - y)
-    const r = Math.hypot(maxX, maxY)
+    document.documentElement.style.setProperty("--vt-x", `${x}px`)
+    document.documentElement.style.setProperty("--vt-y", `${y}px`)
 
-    const existing = document.getElementById("theme-transition-overlay")
-    if (existing) existing.remove()
-
-    const overlay = document.createElement("div")
-    overlay.id = "theme-transition-overlay"
-    overlay.style.position = "fixed"
-    overlay.style.inset = "0"
-    overlay.style.zIndex = "9999"
-    overlay.style.pointerEvents = "none"
-    overlay.style.background = nextTheme === "dark" ? "rgba(10,10,10,0.72)" : "rgba(250,250,250,0.72)"
-    overlay.style.backdropFilter = "blur(10px)"
-    overlay.style.clipPath = `circle(0px at ${x}px ${y}px)`
-    overlay.style.transition = "clip-path 520ms cubic-bezier(0.2, 0, 0.2, 1), opacity 160ms ease-out"
-    overlay.style.opacity = "1"
-
-    document.body.appendChild(overlay)
-
-    // Force the initial state to apply before animating.
-    overlay.getBoundingClientRect()
-    requestAnimationFrame(() => {
-      overlay.style.clipPath = `circle(${r}px at ${x}px ${y}px)`
-    })
-
-    // Switch theme after the overlay has (almost) fully covered the UI.
-    window.setTimeout(() => {
+    if (!document.startViewTransition) {
       setTheme(nextTheme)
-    }, 480)
+      return
+    }
 
-    // Fade away the overlay (same color as the new theme background).
-    window.setTimeout(() => {
-      overlay.style.opacity = "0"
-    }, 520)
-
-    window.setTimeout(() => {
-      overlay.remove()
-    }, 720)
+    document.startViewTransition(() => {
+      flushSync(() => {
+        setTheme(nextTheme)
+      })
+    })
   }
 
   useEffect(() => {

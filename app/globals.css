@@ -28,6 +28,7 @@
   --gradient-start: #6366f1;
   --gradient-mid: #8b5cf6;
   --gradient-end: #ec4899;
+  --expo-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dark {
@@ -301,5 +302,49 @@
 
   .bento-item-large {
     @apply md:col-span-2 md:row-span-2;
+  }
+}
+
+/* polygon */
+
+::view-transition-group(root) {
+  animation-duration: 0.7s;
+  animation-timing-function: var(--expo-out);
+}
+::view-transition-new(root) {
+  animation-name: none;
+  animation-fill-mode: both;
+  z-index: 0;
+}
+::view-transition-old(root) {
+  animation-name: conceal-dark;
+  animation-fill-mode: both;
+  z-index: 1;
+}
+.dark::view-transition-new(root) {
+  animation-name: reveal-dark;
+  animation-duration: 1.5s;
+  animation-fill-mode: both;
+  z-index: 1;
+}
+.dark::view-transition-old(root) {
+  animation-name: none;
+  animation-fill-mode: both;
+  z-index: 0;
+}
+@keyframes reveal-dark {
+  from {
+    clip-path: circle(0px at var(--vt-x, 50vw) var(--vt-y, 50vh));
+  }
+  to {
+    clip-path: circle(150vmax at var(--vt-x, 50vw) var(--vt-y, 50vh));
+  }
+}
+@keyframes conceal-dark {
+  from {
+    clip-path: circle(150vmax at var(--vt-x, 50vw) var(--vt-y, 50vh));
+  }
+  to {
+    clip-path: circle(0px at var(--vt-x, 50vw) var(--vt-y, 50vh));
   }
 }
