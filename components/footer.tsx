@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Heart } from "lucide-react"
+import { basePath } from "@/lib/utils"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -18,28 +19,15 @@ export default function Footer() {
           {/* Logo & Copyright */}
           <div className="flex flex-col items-center md:items-start gap-2">
             <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-sm">
-                T
-              </div>
-              <span className="text-lg font-semibold text-foreground">TyperNull</span>
+              <img src={basePath("/favicon/fav.png")} width={36} height={36} className="rounded-xl" alt="" />
+              <span className="text-lg font-normal tracking-tight text-foreground uppercase" style={{ fontFamily: 'var(--font-retro), sans-serif' }}>
+                TyperNull
+              </span>
             </Link>
-            <p className="text-sm text-muted-foreground">
-              &copy; {currentYear} TyperNull. Made with <Heart className="w-3 h-3 inline text-accent" fill="currentColor" />
-            </p>
           </div>
-
-          {/* Links */}
-          <nav className="flex flex-wrap justify-center gap-6">
-            {links.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {link.name}
-              </Link>
-            ))}
-          </nav>
+          <p className="text-sm text-muted-foreground">
+            Ah shit here we go again.
+          </p>
         </div>
       </div>
     </footer>
